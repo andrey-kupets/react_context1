@@ -7,12 +7,18 @@ export class UsersProvider extends Component {
     state = {
         isLoading: false,
         users: [],
+        isLoading2 : false,
+        posts: [],
     }
     componentDidMount() {
         this.setState({isLoading: true})
            fetch('https://jsonplaceholder.typicode.com/users')
                .then(response=>response.json())
                .then(users=> this.setState({users,isLoading : false}))
+        this.setState({isLoading2: true})
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then(response=>response.json())
+            .then(posts=> this.setState({posts,isLoading2 : false}))
     }
 
     render() {
