@@ -1,25 +1,25 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {UsersContext} from './contexts/usersContext'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+    render() {
+     const {users,isLoading} = this.context;
+      return (
+            <div className="App">
+                {
+                    isLoading && <h1>LODING.....</h1>
+                }
+                {
+                    users.map((user) => <h1 key={user.id}>{user.name}</h1>)
+                }
+            </div>
+        )
+    }
 }
+
+App.contextType = UsersContext
 
 export default App;
